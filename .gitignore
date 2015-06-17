@@ -16,3 +16,5 @@ plugins/*
 
 !plugins/check/
 !plugins/displaylog/
+dist/_main--javascript.js
+dist/_view--javascript.js

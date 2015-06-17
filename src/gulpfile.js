@@ -1,4 +1,6 @@
 var	gulp = require('gulp'),
+	gutil = require('gulp-util'),
+	ftp = require('gulp-ftp'),
 	plugins = require('gulp-load-plugins')(),
 	paths = {};
 
@@ -179,11 +181,31 @@ gulp.task('default', ['view--svg', 'view--scripts', 'main--svg', 'main--scripts'
 
 });
 
+
+paths.ftp = {
+	files: [
+		'../dist/main.css',
+		'../dist/main.js',
+		'../dist/view.js'
+	]
+}
+
+gulp.task('ftp-upload', function () {
+    return gulp.src(paths.ftp.files)
+        .pipe(ftp({
+            host: 'ftp.example.com',
+            user: 'username',
+            pass: 'password'
+        }))
+        .pipe(gutil.noop());
+});
+
 gulp.task('watch', ['default'], function() {
 
 	gulp.watch(paths.view.js,		['view--scripts']);
 
 	gulp.watch(paths.main.js,		['main--scripts']);
 	gulp.watch(paths.main.scss,		['main--styles']);
+	gulp.watch(paths.ftp.files,		['ftp-upload']);
 
 });

@@ -190,22 +190,21 @@ paths.ftp = {
 	]
 }
 
-gulp.task('ftp-upload', function () {
-    return gulp.src(paths.ftp.files)
-        .pipe(ftp({
-            host: 'ftp.example.com',
-            user: 'username',
-            pass: 'password'
-        }))
-        .pipe(gutil.noop());
-});
-
 gulp.task('watch', ['default'], function() {
 
 	gulp.watch(paths.view.js,		['view--scripts']);
 
 	gulp.watch(paths.main.js,		['main--scripts']);
 	gulp.watch(paths.main.scss,		['main--styles']);
-	gulp.watch(paths.ftp.files,		['ftp-upload']);
+
+	gulp.watch(paths.ftp.files, function(event) {
+		gulp.src(event.path)
+		.pipe(ftp({
+			host: 'ftp.example.com',
+			user: 'username',
+			pass: 'password'
+		}))
+		.pipe(gutil.noop());
+	});
 
 });

@@ -48,6 +48,13 @@ sidebar.bind = function() {
 		});
 
 	sidebar
+		.dom('#edit_created')
+		.off(eventName)
+		.on(eventName, function() {
+			if (visible.album())		album.setCreated(album.getID());
+		});
+
+	sidebar
 		.dom('#edit_tags')
 		.off(eventName)
 		.on(eventName, function() {
@@ -287,7 +294,7 @@ sidebar.createStructure.album = function(data) {
 		title: 'Album',
 		type: sidebar.types.DEFAULT,
 		rows: [
-			{ title: 'Created',		value: data.sysdate },
+			{ title: 'Created',		value: data.sysdate,		editable },
 			{ title: 'Images',		value: data.num }
 		]
 	}

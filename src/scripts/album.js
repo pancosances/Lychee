@@ -376,6 +376,19 @@ album.setDescription = function(albumID) {
 
 }
 
+album.setCreated = function(albumID) {
+
+	basicModal.show({
+		body: "<p>Please enter the date.</p>",
+		buttons: {
+			cancel: {
+				title: 'Cancel',
+				fn: basicModal.close
+			}
+		}
+	});
+}
+
 album.setPublic = function(albumID, modal, e) {
 
 	var params,

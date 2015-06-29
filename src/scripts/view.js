@@ -39,6 +39,10 @@ view.albums = {
 
 				smartData = build.divider('Smart Albums') + build.album(albums.json.smartalbums.unsorted) + build.album(albums.json.smartalbums.public) + build.album(albums.json.smartalbums.starred) + build.album(albums.json.smartalbums.recent);
 
+			} else {
+
+				smartData = build.divider('Mobile Uploads');// + build.album(albums.json.smartalbums.public);
+
 			}
 
 			/* Albums */
@@ -50,7 +54,7 @@ view.albums = {
 				});
 
 				// Add divider
-				if (lychee.publicMode===false) albumsData = build.divider('Albums') + albumsData;
+				albumsData = build.divider('Albums') + albumsData;
 
 			}
 

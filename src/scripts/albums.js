@@ -21,7 +21,7 @@ albums.load = function() {
 
 	if (albums.json===null) {
 
-		api.post('Album::getAll', {}, function(data) {
+		api.post('Album::getAll', { true }, function(data) {
 
 			/* Smart Albums */
 			if (lychee.publicMode===false) albums._createSmartAlbums(data.smartalbums);
